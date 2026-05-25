@@ -18,10 +18,14 @@ class SettingsManager(context: Context) {
     )
 
     companion object {
+        private const val KEY_PROVIDER = "provider"
         private const val KEY_ENDPOINT = "endpoint"
         private const val KEY_API_KEY = "api_key"
         private const val KEY_SELECTED_MODEL = "selected_model"
     }
+
+    fun getProvider(): String = sharedPreferences.getString(KEY_PROVIDER, "OpenAI") ?: "OpenAI"
+    fun setProvider(provider: String) = sharedPreferences.edit().putString(KEY_PROVIDER, provider).apply()
 
     fun getEndpoint(): String = sharedPreferences.getString(KEY_ENDPOINT, "") ?: ""
     fun setEndpoint(endpoint: String) = sharedPreferences.edit().putString(KEY_ENDPOINT, endpoint).apply()
